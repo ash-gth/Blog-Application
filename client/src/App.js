@@ -7,7 +7,7 @@ import Login from './Components/Accounts/Login'
 function App() {
   return (
 
-   <Login />
+   <Login />   //self closing text
    
   );
 }
