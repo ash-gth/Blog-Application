@@ -53,8 +53,12 @@ font-size: 16px;
 `
 
 const Login = () => {
-  const imageURL =
-    "https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png";
+  const imageURL ="https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png";
+const signupInitialValues = {
+  name : '',
+  username: '',
+  password: '',
+}
 
 const [account, toggleAccount] = useState('login');
 const [signup, setSignup] = useState (signupInitialValues);
@@ -68,11 +72,7 @@ const onInputChange = (e) => {
 setSignup({...signup, [e.target.name]: e.target.value});
 }
 
-const signupInitialValues = {
-  name : '',
-  username: '',
-  password: ''
-}
+
 
 
 
