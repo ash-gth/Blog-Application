@@ -1,12 +1,12 @@
 import mongoose from "mongoose"
 
 
-export const Connection = async(username, password) =>{
-    const URL= `mongodb+srv://${username}:${password}@cluster0.30zpyr6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+export const Connection = async() =>{
+    const URL= process.env.MONGO_URL;
 
     try {
 
-       await mongoose.connect(URL, { useNewUrlParser : true} );
+       await mongoose.connect(URL);
        console.log("db connected succefully ")
     }catch(error){
    console.log("error", error);

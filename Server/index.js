@@ -8,11 +8,9 @@ const app = express();
 
 const PORT = 8000 ;
 
-
-
+await Connection();
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
  
-const username = process.env.db_username;
-const password = process.env.db_password;
 
-Connection(username,password);
+
+
