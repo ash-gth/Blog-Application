@@ -6,4 +6,4 @@ const router = express.Router();
 router.post('/signup', signupUser);
 
 export default router
-// route hota hai api ka end point 
+// route hota hai api ka end point 0 
