@@ -1,9 +1,7 @@
-import express from "express";
+import express from 'express'
 import {signupUser} from '../Controller/user_controller.js'
 
 const router = express.Router();
-
-router.post('/signup', signupUser);
+router.post('/singup', signupUser);
 
 export default router
-// route hota hai api ka end point 0 
