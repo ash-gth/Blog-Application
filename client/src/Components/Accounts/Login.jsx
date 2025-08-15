@@ -54,27 +54,23 @@ font-size: 16px;
 
 const Login = () => {
   const imageURL ="https://www.sesta.it/wp-content/uploads/2021/03/logo-blog-sesta-trasparente.png";
-const signupInitialValues = {
-  name : '',
-  username: '',
-  password: '',
-}
 
 const [account, toggleAccount] = useState('login');
-const [signup, setSignup] = useState (signupInitialValues);
 
-
-const togglesignup = () => {
-   account === 'signup' ? toggleAccount('login') :  toggleAccount('signup');
+      const togglesignup = () => {
+        account === 'signup' ? toggleAccount('login') :  toggleAccount('signup');
 }
+const [signup, setsignup] = useState(signupInitialValues);
 
-const onInputChange = (e) => {
-setSignup({...signup, [e.target.name]: e.target.value});
+
+    const onInputChange = (e) => {
+      setsignup({...signup, [e.target.name]: e.target.value})
 }
-
-
-
-
+  const signupInitialValues =  {
+        name: '',
+        username: '',
+        password: ''
+    }
 
   return (
     <Component>
