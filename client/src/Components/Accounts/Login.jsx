@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { API } from '../../Service/api';
 import { Box, TextField, Button, styled,Typography } from "@mui/material";
 
 
@@ -11,6 +11,14 @@ margin-top: 90px;
 height: auto;
 box-shadow: 5px 2px 15px 5px rgb(0 0 0 / 0.6);
 `;
+
+const Error = styled(Typography)`
+  font-size: 10px;
+  color: #ff6161;
+  line-height: 0;
+  margin-top: 10px;
+  font-weight: 600;
+`
 const Image = styled('img')
 
 ({
@@ -60,17 +68,31 @@ const [account, toggleAccount] = useState('login');
       const togglesignup = () => {
         account === 'signup' ? toggleAccount('login') :  toggleAccount('signup');
 }
+const signupInitialValues =  {
+        name: '',
+        username: '',
+        password: ''
+    }
+
 const [signup, setsignup] = useState(signupInitialValues);
+const [error, setError] = useState('');
 
 
     const onInputChange = (e) => {
       setsignup({...signup, [e.target.name]: e.target.value})
 }
-  const signupInitialValues =  {
-        name: '',
-        username: '',
-        password: ''
+
+    const signupUser = async() => {
+        let responce = await API.userSignup(signup);
+        if (responce.isSuccess) {
+          setsignup(signupInitialValues);
+          toggleAccount('login')
+        }else{
+          setError('Something went wrong!Please try again later')
+
+        }
     }
+  
 
   return (
     <Component>
@@ -80,6 +102,10 @@ const [signup, setsignup] = useState(signupInitialValues);
                 <Wrapper>
                      <TextField variant="standard" label="Enter Username"/>
                      <TextField variant="standard" label="Enter Password"/>
+                     
+                      {error && <Error>{error}</Error>}
+
+
                      <LoginButton variant="contained">Login</LoginButton>
                      <Text style={{ textAlign: 'center'}}>OR </Text>
                      <SignUpButton onClick={() => togglesignup()}>Create an account</SignUpButton>
@@ -89,9 +115,11 @@ const [signup, setsignup] = useState(signupInitialValues);
                      <TextField variant="standard" onChange={(e) => onInputChange(e)} name= 'name' label="Enter Name"/>
                      <TextField variant="standard" onChange={(e) => onInputChange(e)} name= 'username' label="Enter Username"/>
                      <TextField variant="standard" onChange={(e) => onInputChange(e)} name= 'password' label="Enter Password"/>
-                     <SignUpButton variant="contained">Login</SignUpButton>
+
+                      {error && <Error>{error}</Error>}
+                     <SignUpButton variant="contained" onClick={() => signupUser()}>Login</SignUpButton>
                      <Text style={{ textAlign: 'center'}}>OR </Text>
-                     <SignUpButton onClick={() => togglesignup()}>Already have an account</SignUpButton>
+                     <LoginButton onClick={() => togglesignup()}>Already have an account</LoginButton>
                 </Wrapper>
         }
 
